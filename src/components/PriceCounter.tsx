@@ -37,62 +37,62 @@ const PriceCounter: React.FC = () => {
   };
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-      <Card className="price-card bg-card/50 border-neon-cyan/30 backdrop-blur-sm">
-        <CardContent className="p-4">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <Card className="bg-white text-gray-900 border-0 shadow-lg">
+        <CardContent className="p-6">
           <div className="flex items-center justify-between mb-2">
-            <span className="text-sm text-muted-foreground">Цена AI SOL</span>
-            <Icon name="TrendingUp" className="text-neon-cyan float-animation" size={16} />
+            <span className="text-sm text-gray-600">Цена AI SOL</span>
+            <Icon name="TrendingUp" className="text-green-accent" size={16} />
           </div>
-          <div className="text-2xl font-bold text-neon-cyan neon-pulse">
+          <div className="text-2xl font-bold text-green-accent">
             ${formatPrice(price)}
           </div>
-          <div className={`text-sm ${change24h >= 0 ? 'text-neon-green' : 'text-red-500'}`}>
+          <div className={`text-sm ${change24h >= 0 ? 'text-green-600' : 'text-red-500'}`}>
             {change24h >= 0 ? '+' : ''}{change24h.toFixed(2)}% за 24ч
           </div>
         </CardContent>
       </Card>
 
-      <Card className="bg-card/50 border-neon-pink/30 backdrop-blur-sm">
-        <CardContent className="p-4">
+      <Card className="bg-white text-gray-900 border-0 shadow-lg">
+        <CardContent className="p-6">
           <div className="flex items-center justify-between mb-2">
-            <span className="text-sm text-muted-foreground">Объем 24ч</span>
-            <Icon name="BarChart3" className="text-neon-pink" size={16} />
+            <span className="text-sm text-gray-600">Объем 24ч</span>
+            <Icon name="BarChart3" className="text-green-accent" size={16} />
           </div>
-          <div className="text-2xl font-bold text-neon-pink animate-pulse">
+          <div className="text-2xl font-bold text-green-accent">
             {formatNumber(volume)}
           </div>
-          <div className="text-sm text-neon-green">
+          <div className="text-sm text-green-600">
             +12.5% от вчера
           </div>
         </CardContent>
       </Card>
 
-      <Card className="bg-card/50 border-neon-green/30 backdrop-blur-sm">
-        <CardContent className="p-4">
+      <Card className="bg-white text-gray-900 border-0 shadow-lg">
+        <CardContent className="p-6">
           <div className="flex items-center justify-between mb-2">
-            <span className="text-sm text-muted-foreground">Рыночная кап</span>
-            <Icon name="PieChart" className="text-neon-green" size={16} />
+            <span className="text-sm text-gray-600">Рыночная кап</span>
+            <Icon name="PieChart" className="text-green-accent" size={16} />
           </div>
-          <div className="text-2xl font-bold text-neon-green animate-pulse">
+          <div className="text-2xl font-bold text-green-accent">
             {formatNumber(marketCap)}
           </div>
-          <div className="text-sm text-neon-cyan">
+          <div className="text-sm text-gray-600">
             Ранг #247
           </div>
         </CardContent>
       </Card>
 
-      <Card className="bg-card/50 border-neon-purple/30 backdrop-blur-sm">
-        <CardContent className="p-4">
+      <Card className="bg-white text-gray-900 border-0 shadow-lg">
+        <CardContent className="p-6">
           <div className="flex items-center justify-between mb-2">
-            <span className="text-sm text-muted-foreground">AI Торговля</span>
-            <Icon name="Bot" className="text-neon-purple animate-pulse" size={16} />
+            <span className="text-sm text-gray-600">AI Торговля</span>
+            <Icon name="Bot" className="text-green-accent" size={16} />
           </div>
-          <div className="text-2xl font-bold text-neon-purple">
+          <div className="text-2xl font-bold text-green-accent">
             АКТИВНА
           </div>
-          <div className="text-sm text-neon-cyan">
+          <div className="text-sm text-gray-600">
             +127 сделок/ч
           </div>
         </CardContent>
