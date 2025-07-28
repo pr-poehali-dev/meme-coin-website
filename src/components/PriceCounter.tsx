@@ -38,13 +38,13 @@ const PriceCounter: React.FC = () => {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-      <Card className="bg-card/50 border-neon-cyan/30 backdrop-blur-sm">
+      <Card className="price-card bg-card/50 border-neon-cyan/30 backdrop-blur-sm">
         <CardContent className="p-4">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-muted-foreground">Цена AI SOL</span>
-            <Icon name="TrendingUp" className="text-neon-cyan" size={16} />
+            <Icon name="TrendingUp" className="text-neon-cyan float-animation" size={16} />
           </div>
-          <div className="text-2xl font-bold text-neon-cyan animate-pulse">
+          <div className="text-2xl font-bold text-neon-cyan neon-pulse">
             ${formatPrice(price)}
           </div>
           <div className={`text-sm ${change24h >= 0 ? 'text-neon-green' : 'text-red-500'}`}>

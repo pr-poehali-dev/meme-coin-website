@@ -6,8 +6,12 @@ import { Progress } from '@/components/ui/progress';
 import Icon from '@/components/ui/icon';
 import PieChart from '@/components/PieChart';
 import PriceCounter from '@/components/PriceCounter';
+import { useGSAP } from '@/hooks/useGSAP';
+import { useLenis } from '@/hooks/useLenis';
 
 const Index = () => {
+  const containerRef = useGSAP();
+  useLenis();
   const tokenomicsData = [
     { label: 'AI Алгоритм', percentage: 30, color: 'neon-cyan' },
     { label: 'Ликвидность', percentage: 25, color: 'neon-pink' },
@@ -51,11 +55,11 @@ const Index = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-background text-foreground font-orbitron overflow-x-hidden">
+    <div ref={containerRef} className="min-h-screen bg-background text-foreground font-orbitron overflow-x-hidden">
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-primary/20">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <div className="text-2xl font-bold text-neon-cyan animate-neon-pulse">
+          <div className="text-2xl font-bold text-neon-cyan neon-pulse">
             AI SOL TRADE
           </div>
           <div className="hidden md:flex space-x-6">
@@ -74,21 +78,21 @@ const Index = () => {
       <section id="home" className="pt-20 pb-20 relative">
         <div className="absolute inset-0 bg-gradient-to-b from-neon-purple/20 to-background"></div>
         <div className="container mx-auto px-4 text-center relative z-10">
-          <div className="animate-float mb-8">
+          <div className="hero-logo mb-8">
             <img 
               src="/img/56f4f98f-4e5a-47d4-a99d-b65f1869e48d.jpg" 
               alt="AI SOL TRADE Logo" 
-              className="w-32 h-32 mx-auto rounded-full border-4 border-neon-cyan animate-neon-pulse"
+              className="w-32 h-32 mx-auto rounded-full border-4 border-neon-cyan neon-pulse float-animation"
             />
           </div>
-          <h1 className="text-6xl md:text-8xl font-black mb-6 bg-gradient-to-r from-neon-cyan via-neon-pink to-neon-green bg-clip-text text-transparent animate-pulse">
+          <h1 className="hero-title text-6xl md:text-8xl font-black mb-6 bg-gradient-to-r from-neon-cyan via-neon-pink to-neon-green bg-clip-text text-transparent">
             AI SOL TRADE
           </h1>
-          <p className="text-xl md:text-2xl mb-8 text-neon-cyan max-w-3xl mx-auto">
+          <p className="hero-subtitle text-xl md:text-2xl mb-8 text-neon-cyan max-w-3xl mx-auto">
             🤖 Инновационный ИИ-бот для автоматической торговли высокодоходными мемкоинами на Solana
           </p>
-          <div className="flex flex-col md:flex-row gap-4 justify-center items-center mb-12">
-            <Button size="lg" className="bg-gradient-to-r from-neon-cyan to-neon-pink text-black font-bold text-lg px-8 py-4 animate-neon-pulse">
+          <div className="hero-buttons flex flex-col md:flex-row gap-4 justify-center items-center mb-12">
+            <Button size="lg" className="bg-gradient-to-r from-neon-cyan to-neon-pink text-black font-bold text-lg px-8 py-4 neon-pulse">
               <Icon name="Bot" className="mr-2" />
               Запустить AI торговлю
             </Button>
@@ -102,17 +106,17 @@ const Index = () => {
       </section>
 
       {/* AI Features Section */}
-      <section id="ai-features" className="py-20 relative">
-        <div className="absolute inset-0 bg-gradient-to-r from-neon-cyan/10 to-neon-pink/10"></div>
+      <section id="ai-features" className="section-reveal py-20 relative">
+        <div className="parallax-bg absolute inset-0 bg-gradient-to-r from-neon-cyan/10 to-neon-pink/10"></div>
         <div className="container mx-auto px-4 relative z-10">
           <h2 className="text-4xl md:text-6xl font-bold text-center mb-16 text-neon-pink">
             Возможности ИИ
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {aiFeatures.map((feature, index) => (
-              <Card key={index} className={`bg-card/50 border-${feature.color}/30 backdrop-blur-sm hover:scale-105 transition-transform`}>
+              <Card key={index} className={`card-reveal bg-card/50 border-${feature.color}/30 backdrop-blur-sm hover:scale-105 transition-transform`}>
                 <CardContent className="p-6 text-center">
-                  <Icon name={feature.icon as any} className={`text-${feature.color} mx-auto mb-4 animate-pulse`} size={48} />
+                  <Icon name={feature.icon as any} className={`text-${feature.color} mx-auto mb-4 float-animation`} size={48} />
                   <h3 className={`text-xl font-bold mb-3 text-${feature.color}`}>{feature.title}</h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">{feature.description}</p>
                 </CardContent>
@@ -123,14 +127,14 @@ const Index = () => {
       </section>
 
       {/* Tokenomics Section */}
-      <section id="tokenomics" className="py-20 relative">
-        <div className="absolute inset-0 bg-gradient-to-r from-neon-pink/10 to-neon-purple/10"></div>
+      <section id="tokenomics" className="section-reveal py-20 relative">
+        <div className="parallax-bg absolute inset-0 bg-gradient-to-r from-neon-pink/10 to-neon-purple/10"></div>
         <div className="container mx-auto px-4 relative z-10">
           <h2 className="text-4xl md:text-6xl font-bold text-center mb-16 text-neon-green">
             Токеномика
           </h2>
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="flex justify-center">
+            <div className="pie-chart flex justify-center">
               <PieChart data={tokenomicsData} />
             </div>
             <div className="space-y-6">
@@ -186,8 +190,8 @@ const Index = () => {
       </section>
 
       {/* Roadmap Section */}
-      <section id="roadmap" className="py-20 relative">
-        <div className="absolute inset-0 bg-gradient-to-l from-neon-green/10 to-neon-cyan/10"></div>
+      <section id="roadmap" className="section-reveal py-20 relative">
+        <div className="parallax-bg absolute inset-0 bg-gradient-to-l from-neon-green/10 to-neon-cyan/10"></div>
         <div className="container mx-auto px-4 relative z-10">
           <h2 className="text-4xl md:text-6xl font-bold text-center mb-16 text-neon-purple">
             Роадмап развития
@@ -195,7 +199,7 @@ const Index = () => {
           <div className="max-w-4xl mx-auto">
             <div className="space-y-8">
               {roadmapItems.map((item, index) => (
-                <Card key={index} className={`bg-card/50 backdrop-blur-sm border-2 ${
+                <Card key={index} className={`roadmap-item bg-card/50 backdrop-blur-sm border-2 ${
                   item.status === 'completed' ? 'border-neon-green/50' :
                   item.status === 'in-progress' ? 'border-neon-pink/50' :
                   'border-neon-purple/30'
@@ -218,7 +222,7 @@ const Index = () => {
                             <Icon name="CheckCircle" className="text-neon-green" size={24} />
                           )}
                           {item.status === 'in-progress' && (
-                            <Icon name="Clock" className="text-neon-pink animate-pulse" size={24} />
+                            <Icon name="Clock" className="text-neon-pink neon-pulse" size={24} />
                           )}
                         </div>
                         <ul className="space-y-2">
@@ -240,14 +244,14 @@ const Index = () => {
       </section>
 
       {/* Community Section */}
-      <section id="community" className="py-20 relative">
-        <div className="absolute inset-0 bg-gradient-to-t from-neon-purple/20 to-background"></div>
+      <section id="community" className="section-reveal py-20 relative">
+        <div className="parallax-bg absolute inset-0 bg-gradient-to-t from-neon-purple/20 to-background"></div>
         <div className="container mx-auto px-4 relative z-10">
           <h2 className="text-4xl md:text-6xl font-bold text-center mb-16 text-neon-cyan">
             Присоединяйся к AI сообществу
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-            <Card className="bg-card/50 border-neon-cyan/30 backdrop-blur-sm hover:scale-105 transition-transform cursor-pointer">
+            <Card className="card-reveal bg-card/50 border-neon-cyan/30 backdrop-blur-sm hover:scale-105 transition-transform cursor-pointer">
               <CardContent className="p-6 text-center">
                 <Icon name="MessageCircle" className="text-neon-cyan mx-auto mb-4" size={48} />
                 <h3 className="text-xl font-bold mb-2 text-neon-cyan">Telegram</h3>
@@ -295,33 +299,33 @@ const Index = () => {
       </section>
 
       {/* AI Trading Stats */}
-      <section className="py-20 relative">
-        <div className="absolute inset-0 bg-gradient-to-r from-neon-cyan/10 to-neon-pink/10"></div>
+      <section className="section-reveal py-20 relative">
+        <div className="parallax-bg absolute inset-0 bg-gradient-to-r from-neon-cyan/10 to-neon-pink/10"></div>
         <div className="container mx-auto px-4 relative z-10">
           <h2 className="text-4xl md:text-6xl font-bold text-center mb-16 bg-gradient-to-r from-neon-cyan to-neon-pink bg-clip-text text-transparent">
             Статистика AI торговли
           </h2>
           <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-            <Card className="bg-card/50 border-neon-cyan/30 backdrop-blur-sm">
+            <Card className="card-reveal bg-card/50 border-neon-cyan/30 backdrop-blur-sm">
               <CardContent className="p-6 text-center">
-                <div className="text-6xl mb-4">📈</div>
-                <h3 className="text-xl font-bold mb-2 text-neon-cyan">+2,847%</h3>
+                <div className="text-6xl mb-4 float-animation">📈</div>
+                <h3 className="text-xl font-bold mb-2 text-neon-cyan neon-pulse">+2,847%</h3>
                 <p className="text-sm text-muted-foreground">Средняя доходность за месяц</p>
               </CardContent>
             </Card>
             
-            <Card className="bg-card/50 border-neon-pink/30 backdrop-blur-sm">
+            <Card className="card-reveal bg-card/50 border-neon-pink/30 backdrop-blur-sm">
               <CardContent className="p-6 text-center">
-                <div className="text-6xl mb-4">⚡</div>
-                <h3 className="text-xl font-bold mb-2 text-neon-pink">0.003 сек</h3>
+                <div className="text-6xl mb-4 float-animation">⚡</div>
+                <h3 className="text-xl font-bold mb-2 text-neon-pink neon-pulse">0.003 сек</h3>
                 <p className="text-sm text-muted-foreground">Скорость исполнения сделок</p>
               </CardContent>
             </Card>
             
-            <Card className="bg-card/50 border-neon-green/30 backdrop-blur-sm">
+            <Card className="card-reveal bg-card/50 border-neon-green/30 backdrop-blur-sm">
               <CardContent className="p-6 text-center">
-                <div className="text-6xl mb-4">🛡️</div>
-                <h3 className="text-xl font-bold mb-2 text-neon-green">98.7%</h3>
+                <div className="text-6xl mb-4 float-animation">🛡️</div>
+                <h3 className="text-xl font-bold mb-2 text-neon-green neon-pulse">98.7%</h3>
                 <p className="text-sm text-muted-foreground">Точность предсказаний</p>
               </CardContent>
             </Card>
@@ -333,7 +337,7 @@ const Index = () => {
       <footer className="py-12 border-t border-primary/20">
         <div className="container mx-auto px-4">
           <div className="text-center">
-            <div className="text-3xl font-bold text-neon-cyan mb-4 animate-neon-pulse">
+            <div className="text-3xl font-bold text-neon-cyan mb-4 neon-pulse">
               AI SOL TRADE
             </div>
             <p className="text-muted-foreground mb-6">
